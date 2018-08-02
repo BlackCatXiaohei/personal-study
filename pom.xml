@@ -9,6 +9,8 @@
 
     <modules>
         <module>calculator</module>
+        <module>vue-study</module>
+        <module>feature-parser</module>
     </modules>
 
     <name>cat-tool</name>
@@ -28,6 +30,10 @@
         <lombok.version>1.16.20</lombok.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
+        <jsqlparser.version>1.2</jsqlparser.version>
+        <dom4j.version>1.6.1</dom4j.version>
+        <gson.version>2.8.5</gson.version>
+
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     </properties>
 
@@ -49,11 +55,18 @@
                 <version>${guava.version}</version>
             </dependency>
 
-            <!-- json package -->
+            <!-- jackson package -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <!--gson package-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
 
             <!-- annotion tools -->
@@ -82,6 +95,20 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+
+            <!--sql解析api-->
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
+            </dependency>
+
+            <!--xml支持-->
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
             </dependency>
 
         </dependencies>
