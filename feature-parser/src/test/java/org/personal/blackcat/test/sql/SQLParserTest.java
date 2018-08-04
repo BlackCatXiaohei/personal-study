@@ -1,10 +1,10 @@
-package org.personal.blackcat.utils;
+package org.personal.blackcat.test.sql;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
+import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -14,10 +14,11 @@ import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.util.TablesNamesFinder;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -69,12 +70,6 @@ public class SQLParserTest {
             log.info("{}", matcher.group(1));
         }
 
-        /*String text = "${column}";
-        String regex2 = "\\$\\{(\\w+)}";
-        Matcher matcher1 = Pattern.compile(regex2).matcher(text);
-        while (matcher1.find()) {
-            log.info("{}", matcher1.group(1));
-        }*/
     }
 
     @Test
@@ -99,6 +94,28 @@ public class SQLParserTest {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         log.info("{}", gson.toJson(timestamp));
+    }
+
+    @Test
+    public void fileTest() {
+        File file = new File("D:\\WorkSpace\\github\\personal-study\\feature-parser\\src\\test\\java\\org\\personal\\blackcat\\test\\test.md");
+        try {
+            List<String> strings = Files.readLines(file, Charsets.UTF_8);
+            StringBuilder result = new StringBuilder();
+
+            for (String str : strings) {
+                String s1 = "`" + Splitter.on("#").splitToList(str).get(0).trim() + "`\\\n";
+                if (Splitter.on("#").splitToList(str).size() == 2) {
+                    String s2 = "**" + Splitter.on("#").splitToList(str).get(1).trim() + "**\\\n";
+                    result.append(s2);
+                }
+                result.append(s1);
+            }
+
+            Files.write(result.toString().getBytes(), file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package org.personal.blackcat.utils;
+package org.personal.blackcat.test;
 
 import net.sf.jsqlparser.parser.CCJSqlParserManager;
 

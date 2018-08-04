@@ -11,6 +11,7 @@
         <module>calculator</module>
         <module>vue-study</module>
         <module>feature-parser</module>
+        <module>study-nodes</module>
     </modules>
 
     <name>cat-tool</name>
